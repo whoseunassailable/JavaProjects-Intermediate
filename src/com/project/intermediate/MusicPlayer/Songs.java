@@ -1,9 +1,14 @@
-package com.project.intermediate;
+package com.project.intermediate.MusicPlayer;
 
 public class Songs {
+
+    // Title of the Song
     String title;
+
+    // Duration of the Song
     double duration;
 
+    // Constructor
     public Songs(String title, double duration) {
         this.title = title;
         this.duration = duration;
@@ -13,6 +18,7 @@ public class Songs {
 
     }
 
+    // getter
     public String getTitle() {
         return getTitle();
     }
@@ -21,6 +27,7 @@ public class Songs {
         return getDuration();
     }
 
+    // toString method
     @Override
     public String toString() {
         return "Songs{" +
@@ -28,4 +35,5 @@ public class Songs {
                 ", duration=" + duration +
                 '}';
     }
+
 }
