@@ -103,7 +103,9 @@ public class Main {
                         System.out.println("Now playing : " + listIterator.previous().toString());
                         forward = false;
                     } else {
-                        System.out.println();
+                        System.out.println(
+
+                        );
                     }
                     break;
 
