@@ -10,14 +10,14 @@ import java.util.ListIterator;
 
 public class Main {
     private static ArrayList<Album> albums = new ArrayList<>();
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // Creating an album object
         Album album = new Album("This is Us", "1-D");
 
         // Adding few songs to the album This is Us
         album.addSongs("Olivia", 4.5);
         album.addSongs("Story of my life", 3.9);
-        album.addSongs("Stockolm Syndrome", 4.5);
+        album.addSongs("Stockholm Syndrome", 4.5);
         album.addSongs("Perfect", 3.7);
 
         // Adding created album This is Us to our arraylist
@@ -34,7 +34,7 @@ public class Main {
 
         LinkedList<Songs> playlist = new LinkedList<>();
 
-        playlist.add(albums.get(0));
+        // playlist.add(albums.get(0));
         albums.get(0).addToPlayList("Olivia", playlist);
         albums.get(0).addToPlayList("Story of my life", playlist);
         albums.get(1).addToPlayList("Lucky You", playlist);
@@ -99,26 +99,42 @@ public class Main {
                     break;
 
                 case 3:
-                    if (listIterator.hasPrevious()) {
-                        System.out.println("Now playing : " + listIterator.previous().toString());
-                        forward = false;
+                    if (forward) {
+                        if (listIterator.hasPrevious()) {
+                            System.out.println("Now playing : " + listIterator.previous().toString());
+                            forward = false;
+                        } else {
+                            System.out.println("We are at the start of the list");
+                        }
                     } else {
-                        System.out.println(
-
-                        );
+                        if (listIterator.hasNext()) {
+                            System.out.println("Now playing : " + listIterator.next().toString());
+                            forward = true;
+                        } else {
+                            System.out.println("We have reaches to the end of the list.");
+                        }
                     }
                     break;
 
                 case 4:
-
+                    printList(playlist);
                     break;
 
                 case 5:
-                    System.out.println();
+                    printMenu();
                     break;
 
                 case 6:
-                    System.out.println();
+                    if (playlist.size() > 0) {
+                        listIterator.remove();
+                        if (listIterator.hasNext()) {
+                            System.out.println("Now playing : " + listIterator.next().toString());
+                        } else {
+                            if (listIterator.hasPrevious()) {
+                                System.out.println("Now playing : " + listIterator.previous().toString());
+                            }
+                        }
+                    }
                     break;
 
             }
