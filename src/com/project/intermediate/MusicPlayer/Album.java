@@ -15,7 +15,7 @@ public class Album {
     private ArrayList<Songs> songs;
 
     // Constructor
-    public Album(String name, String artist, ArrayList<Songs> songs) {
+    public Album(String name, String artist) {
         this.name = name;
         this.artist = artist;
         this.songs = new ArrayList<Songs>();
@@ -29,6 +29,7 @@ public class Album {
 
 
     public Songs findSongs(String title) {
+        // Using enhanced for loop for
         for(Songs checkSong : songs) {
             if (checkSong.getTitle().equals(title)) {
                 return checkSong;
@@ -39,7 +40,7 @@ public class Album {
 
     // Add song to our album
     public boolean addSongs(String title, double duration) {
-        // Check if songs exists or not
+        // Check if song exists or not
         if (findSongs(title) == null) {
             songs.add(new Songs(title, duration));
             System.out.println("Song " + title + " is added to the list.");
@@ -50,19 +51,22 @@ public class Album {
         }
     }
 
+    // Add songs to the PlayList
     public boolean addToPlayList(int trackNumber, LinkedList<Songs> playlist) {
         int index = trackNumber - 1;
+
         if (index > 0 && index <= this.songs.size()) {
             playlist.add(this.songs.get(index));
             return true;
         }
-        System.out.println("This album does not have a track with trackNumber " + trackNumber);
+        System.out.println("This album does not have a song with trackNumber" + trackNumber);
         return false;
     }
 
+
     public boolean addToPlayList(String title, LinkedList<Songs> PlayList) {
-        for (Songs checkedSong : PlayList) {
-            if (checkedSong.getTitle() == title) {
+        for (Songs checkedSong : this.songs) {
+            if (checkedSong.getTitle().equals(title) ) {
                 PlayList.add(checkedSong);
                 return true;
             }
